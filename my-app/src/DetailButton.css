@@ -1,0 +1,19 @@
+
+.detail-button {
+    background-color: black; /* Color de fondo negro */
+    color: white; /* Color del texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Centrar el texto */
+    text-decoration: none; /* Sin subrayado */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Bordes redondeados (opcional) */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+  }
+  
+  .detail-button:hover {
+    background-color: #444; /* Color de fondo más claro al pasar el mouse */
+  }
+  
