@@ -1,0 +1,72 @@
+.filter-container {
+    border: 2px solid #007bff;
+    padding: 16px;
+    width: 250px;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.filter-menu {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.filter-category summary {
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.filter-section {
+    margin-top: 16px;
+}
+
+.filter-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+}
+
+.categories-list,
+.price-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.category-item {
+    margin-bottom: 8px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.category-item.active {
+    font-weight: bold;
+    color: red;
+}
+
+.price-list li {
+    margin-bottom: 8px;
+}
+
+.apply-filter-btn {
+    background-color: black;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%;
+    text-align: center;
+}

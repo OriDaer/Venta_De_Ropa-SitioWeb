@@ -1,4 +1,4 @@
-import './App.css';
+import './Home.css';
 import React, { useState } from 'react';
 import Categories from './Categories';
 import Footer from './Footer';
