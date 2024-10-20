@@ -1,34 +1,44 @@
-import React, { useState } from 'react';
-import './ProductDetail.css';  // Asegúrate de tener los estilos importados
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import './ProductDetail.css';
 
 const ProductDetail = () => {
-    const [quantity, setQuantity] = useState(1);
+    const { id } = useParams(); // Obtener el ID del producto desde la URL
+    const [product, setProduct] = useState(null); // Estado para almacenar el producto
 
-    const increaseQuantity = () => setQuantity(quantity + 1);
-    const decreaseQuantity = () => quantity > 1 && setQuantity(quantity - 1);
+    useEffect(() => {
+        // Obtener el producto específico usando el ID
+        fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(response => response.json())
+            .then(data => setProduct(data))
+            .catch(error => {
+                console.error('Error al obtener el producto:', error);
+            });
+    }, [id]); // El efecto se ejecuta cada vez que cambie el ID
+
+    // Si el producto aún no se ha cargado, mostramos un mensaje de carga
+    if (!product) {
+        return <div>Cargando...</div>;
+    }
 
     return (
         <div className="product-detail-container">
             <div className="breadcrumbs">
-                <p>home / category / dress / dress gales buganvilla</p>
+                <p>home / category / dress / {product.title}</p>
             </div>
             <div className="product-detail">
                 <div className="product-images">
-                    <img src="https://vestidissima.com/cdn/shop/files/Vestidissima-LookbookWEB-71_0663972c-4bd5-4b49-882b-c1a422bf37a2.jpg?v=1723715155&width=1200" alt="Product 1" />
-                    <img src="https://vestidissima.com/cdn/shop/files/Vestidissima-LookbookWEB-65.jpg?v=1723715154&width=1200" alt="Product 2" />
-                    <img src="https://vestidissima.com/cdn/shop/files/Vestidissima-LookbookWEB-66.jpg?v=1723715154&width=1200" alt="Product 3" />
+                    <img src={product.image} alt={product.title} />
                 </div>
                 <div className="product-info">
-                    <h1>Dress Gales Buganvilla</h1>
-                    <p className="price">$39.99</p>
-                    <p className="description">
-                        Vestido en tejido crepón elástico y gasa, lleva refuerzo en el pecho y chal incluido. Cierra con cremallera trasera.
-                    </p>
+                    <h1>{product.title}</h1>
+                    <p className="price">${product.price}</p>
+                    <p className="description">{product.description}</p>
 
                     <div className="quantity-select">
-                        <button onClick={decreaseQuantity}>-</button>
-                        <span>{quantity}</span>
-                        <button onClick={increaseQuantity}>+</button>
+                        <button>-</button>
+                        <span>1</span>
+                        <button>+</button>
                     </div>
 
                     <select className="size-select">
@@ -43,10 +53,7 @@ const ProductDetail = () => {
 
                     <div className="product-extra">
                         <p><strong>Conscious</strong></p>
-                        <p>
-                            Twin duvet cover set in soft, woven fabric made from a Tencel™ lyocell and cotton blend with a printed pattern.
-                        </p>
-                        <p><strong>Composition</strong> – Cotton 50%, Lyocell 50%</p>
+                        <p>Material: Cotton 50%, Lyocell 50%</p>
                         <p><strong>Art. No.</strong> – 0643448004</p>
                     </div>
                 </div>

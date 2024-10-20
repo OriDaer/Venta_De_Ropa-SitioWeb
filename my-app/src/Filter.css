@@ -2,6 +2,8 @@
     border: 2px solid #007bff;
     padding: 16px;
     width: 250px;
+    background-color: #f8f8f8;
+    position: relative;
 }
 
 .filter-header {
@@ -69,4 +71,49 @@
     margin-top: 16px;
     width: 100%;
     text-align: center;
+}
+
+.filter-page {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.products-list {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 1000px;
+    margin-left: 20px;
+}
+
+.product_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product_card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-info {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .products-list {
+        margin-left: 0;
+    }
+
+    .product_grid {
+        grid-template-columns: 1fr;
+    }
 }
