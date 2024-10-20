@@ -6,8 +6,35 @@ const ProductDetail = () => {
     const { id } = useParams(); // Obtener el ID del producto desde la URL
     const [product, setProduct] = useState(null); // Estado para almacenar el producto
 
+    // Descripciones aleatorias para cualquier producto
+    const randomDescriptions = [
+        "This product is crafted with care using sustainable materials, ensuring a minimal environmental impact.",
+        "Designed for durability and style, this product embodies both functionality and aesthetic appeal.",
+        "A perfect blend of quality and innovation, making this product a must-have in any collection."
+    ];
+
+    // Números de artículo aleatorios para cualquier producto
+    const randomArtNumbers = [
+        "0643448004",
+        "0532431003",
+        "0783948471",
+        "0223758492",
+        "0912394755"
+    ];
+
+    // Función para seleccionar una descripción aleatoria
+    const getRandomDescription = () => {
+        const randomIndex = Math.floor(Math.random() * randomDescriptions.length);
+        return randomDescriptions[randomIndex];
+    };
+
+    // Función para seleccionar un número de artículo aleatorio
+    const getRandomArtNumber = () => {
+        const randomIndex = Math.floor(Math.random() * randomArtNumbers.length);
+        return randomArtNumbers[randomIndex];
+    };
+
     useEffect(() => {
-        // Obtener el producto específico usando el ID
         fetch(`https://fakestoreapi.com/products/${id}`)
             .then(response => response.json())
             .then(data => setProduct(data))
@@ -24,7 +51,7 @@ const ProductDetail = () => {
     return (
         <div className="product-detail-container">
             <div className="breadcrumbs">
-                <p>home / category / dress / {product.title}</p>
+                <p>home / products / {product.category} / {product.title}</p>
             </div>
             <div className="product-detail">
                 <div className="product-images">
@@ -53,8 +80,8 @@ const ProductDetail = () => {
 
                     <div className="product-extra">
                         <p><strong>Conscious</strong></p>
-                        <p>Material: Cotton 50%, Lyocell 50%</p>
-                        <p><strong>Art. No.</strong> – 0643448004</p>
+                        <p>{getRandomDescription()}</p> {/* Mostrar descripción aleatoria */}
+                        <p><strong>Art. No.</strong> – {getRandomArtNumber()}</p> {/* Mostrar Art. No. aleatorio */}
                     </div>
                 </div>
             </div>

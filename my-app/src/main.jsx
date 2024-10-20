@@ -10,17 +10,29 @@ import Header from './Header';
 import Footer from './Footer';
 
 const root = createRoot(document.getElementById("root"));
+
 root.render(
   <BrowserRouter>
-    <Header/>
     <Routes>
-      <Route path="/" element={<Login />} /> {/* Página de inicio (login) */}
-      <Route path="/home" element={<Home />} /> {/* Página de inicio de sesión */}
-    {/*  <Route path="/products" element={<ProductsList />} /> */ }{/* Todos los productos */}
-      <Route path="/products/category" element={<ProductsList />} /> {/* Página de categoría específica */}
-      <Route path="/products/category/:id" element={<ProductDetail />} /> {/* Detalle de producto (dinámico) */}
-      <Route path="/cart" element={<Cart />} /> {/* Carrito de compras */}
+      <Route path="/" 
+        element={<><Login /><Footer /></>} 
+      /> 
+
+      <Route path="/home" 
+        element={<><Header /><Home /><Footer /></>} 
+      /> 
+
+      <Route path="/products/category" 
+        element={<><Header /><ProductsList /><Footer /></>} 
+      /> 
+
+      <Route path="/products/category/:id" 
+        element={<><Header /><ProductDetail /><Footer /></>} 
+      /> 
+
+      <Route path="/cart" 
+        element={<><Header /><Cart /><Footer /></>} 
+      /> 
     </Routes>
-    <Footer/>
   </BrowserRouter>
 );

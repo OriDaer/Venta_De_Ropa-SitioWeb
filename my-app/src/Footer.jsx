@@ -11,7 +11,7 @@ const Footer = () => {
           <a href="#about" className="footer-link">Nosotros</a>
           <a href="#contact" className="footer-link">Contacto</a>
         </nav>
-        <p className="footer-text">© 2024 Tu Marca. Todos los derechos reservados.</p>
+        <p className="footer-text">© 2024 DomSar. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
