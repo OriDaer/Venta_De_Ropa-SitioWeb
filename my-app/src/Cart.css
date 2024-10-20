@@ -1,54 +1,78 @@
-.cart {
-    font-family: Arial, sans-serif;
+.cart-container {
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
 }
 
-.cart-container {
-    margin-bottom: 40px;
+.products-section {
+    width: 60%;
 }
 
-.cart-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.checkout-section {
+    width: 35%;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
-.cart-item {
+.product-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    position: relative; /* Para usar posicionamiento absoluto en el botón de eliminar */
 }
 
-.item-details {
-    flex-grow: 1;
-    padding: 0 20px;
-}
-
-.remove-item {
-    background: none;
+.remove-button {
+    background-color: red;
+    color: white;
     border: none;
-    font-size: 20px;
+    padding: 5px;
     cursor: pointer;
+    width: 25px; /* Tamaño más pequeño */
+    height: 25px;
+    font-size: 14px; /* Fuente más pequeña */
+    position: absolute;
+    right: 10px; /* Alineado a la derecha */
+    top: 10px; /* Alineado en la parte superior */
+    text-align: center; /* Centrar el texto "X" */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.cart-total {
-    text-align: right;
+.product-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+
+.product-details h4 {
+    margin: 0;
+}
+
+.total-summary {
     margin-top: 20px;
 }
 
-.recommendations {
-    margin-top: 40px;
+.discount-section, .login-section, .order-summary {
+    margin-bottom: 20px;
 }
 
-.recommended-items {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
+.add-button, .login-button, .checkout-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
-.recommended-item {
-    text-align: center;
-    min-width: 150px;
+.add-button {
+    margin-left: 10px;
+}
+
+.checkout-button {
+    width: 100%;
+    margin-top: 20px;
 }
