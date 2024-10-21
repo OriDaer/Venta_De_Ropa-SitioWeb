@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [fechaNacimiento, setFechaNacimiento] = useState('');
+  const [mensaje, setMensaje] = useState('');
+  const navigate = useNavigate();
 
   const manejarSubmit = (e) => {
     e.preventDefault();
     console.log({ email, nombre, fechaNacimiento });
+
+    setMensaje('¡Gracias por suscribirte!');
+
+    setTimeout(() => {
+      navigate('/home');
+    }, 2000);
   };
 
   return (
@@ -52,6 +61,12 @@ function Login() {
         </div>
         <button type="submit">SUSCRIBIRSE</button>
       </form>
+
+      {mensaje && (
+        <div className="mensaje-agradecimiento">
+          <p>{mensaje}</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import './Cart.css'; // Asegúrate de agregar los estilos en un archivo CSS aparte
+import React, { useState, useEffect } from 'react';
+import './Cart.css';
 
 const Cart = () => {
-    // Estado para los productos en el carrito
     const [products, setProducts] = useState([
         {
             id: 1,
@@ -11,7 +10,7 @@ const Cart = () => {
             quantity: 2,
             artNo: '1234',
             size: 'M',
-            img: 'url_to_image_1' // Cambia esto a la URL de la imagen
+            img: 'url_to_image_1'
         },
         {
             id: 2,
@@ -20,31 +19,51 @@ const Cart = () => {
             quantity: 1,
             artNo: '5678',
             size: 'L',
-            img: 'url_to_image_2' // Cambia esto a la URL de la imagen
+            img: 'url_to_image_2'
         }
     ]);
 
-    const [discountCode, setDiscountCode] = useState(''); // Estado del código de descuento
-    const [shipping, setShipping] = useState(5.00); // Estado del costo de envío
+    const [discountCode, setDiscountCode] = useState('');
+    const [shipping, setShipping] = useState(5.00);
 
-    // Función para eliminar productos
+    const [carouselItems, setCarouselItems] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        // Obtener productos aleatorios desde Fake Store API sin usar await
+        fetch('https://fakestoreapi.com/products?limit=11')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Productos obtenidos del carrusel:', data); // Verificación de los datos obtenidos
+                setCarouselItems(data);
+            })
+            .catch((error) => {
+                console.error('Error fetching products:', error);
+            });
+    }, []);
+
     const removeProduct = (id) => {
-        setProducts(products.filter(product => product.id !== id));
+        setProducts(products.filter((product) => product.id !== id));
     };
 
-    // Función para calcular el total del valor de los productos
     const calculateTotal = () => {
         return products.reduce((acc, product) => acc + (product.price * product.quantity), 0);
     };
 
-    // Función para manejar el envío del pedido
     const handleCheckout = () => {
         alert('Tu pedido ya fue enviado, pronto te estaremos escribiendo, ¡gracias por confiar en nosotros! :)');
     };
 
+    const goToNext = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselItems.length);
+    };
+
+    const goToPrevious = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + carouselItems.length) % carouselItems.length);
+    };
+
     return (
         <div className="cart-container">
-            {/* Sección izquierda: lista de productos */}
             <div className="products-section">
                 {products.map((product) => (
                     <div key={product.id} className="product-item">
@@ -61,17 +80,13 @@ const Cart = () => {
                         </div>
                     </div>
                 ))}
-
-                {/* Línea divisoria y resumen total */}
                 <div className="total-summary">
                     <hr />
                     <p><strong>Total de productos: {calculateTotal().toFixed(2)} $</strong></p>
                 </div>
             </div>
 
-            {/* Sección derecha: descuento, login y resumen */}
             <div className="checkout-section">
-                {/* Input para código de descuento */}
                 <div className="discount-section">
                     <h3>ADD A DISCOUNT CODE</h3>
                     <input 
@@ -82,24 +97,40 @@ const Cart = () => {
                     />
                     <button className="add-button">Add</button>
                 </div>
-
-                {/* Botón de inicio de sesión */}
                 <div className="login-section">
                     <h3>Log in to use your member offers</h3>
                     <button className="login-button">LOG IN</button>
                 </div>
-
-                {/* Resumen del pedido */}
                 <div className="order-summary">
                     <p>Order value: {calculateTotal().toFixed(2)} $</p>
                     <p>Shipping: {shipping.toFixed(2)} $</p>
                     <p><strong>Total: {(calculateTotal() + shipping).toFixed(2)} $</strong></p>
                 </div>
-
-                {/* Botón de compra */}
                 <button className="checkout-button" onClick={handleCheckout}>
                     Comprar
                 </button>
+            </div>
+            <h2>Also you may buy</h2>
+            <div className="carousel-container">
+                <button className="carousel-button prev" onClick={goToPrevious}>&#10094;</button>
+                <div className="carousel" style={{ transform: `translateX(-${currentIndex * 340}px)` }}>
+                    {carouselItems.length > 0 ? (
+                        carouselItems.map((item) => (
+                            <div className="carousel-item" key={item.id}>
+                                <img src={item.image} alt={item.title} />
+                                <div className="carousel-item-content">
+                                    <h2 className="carousel-title">{item.title}</h2>
+                                    <p className="carousel-description">{item.description}</p>
+                                    <p className="carousel-price">{item.price}</p>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No hay productos disponibles en el carrusel.</p>
+                    )}
+                </div>
+
+                <button className="carousel-button next" onClick={goToNext}>&#10095;</button>
             </div>
         </div>
     );

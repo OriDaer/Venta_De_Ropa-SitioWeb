@@ -1,7 +1,9 @@
+/* Estilos generales del carrito */
 .cart-container {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    flex-wrap: wrap; /* Para que los elementos no se sobrepongan */
 }
 
 .products-section {
@@ -21,7 +23,7 @@
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 15px;
-    position: relative; /* Para usar posicionamiento absoluto en el botón de eliminar */
+    position: relative;
 }
 
 .remove-button {
@@ -30,13 +32,13 @@
     border: none;
     padding: 5px;
     cursor: pointer;
-    width: 25px; /* Tamaño más pequeño */
+    width: 25px;
     height: 25px;
-    font-size: 14px; /* Fuente más pequeña */
+    font-size: 14px;
     position: absolute;
-    right: 10px; /* Alineado a la derecha */
-    top: 10px; /* Alineado en la parte superior */
-    text-align: center; /* Centrar el texto "X" */
+    right: 10px;
+    top: 10px;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,4 +77,75 @@
 .checkout-button {
     width: 100%;
     margin-top: 20px;
+}
+
+/* Estilos del Carrusel */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    overflow: hidden; /* Asegura que solo se vea lo que está dentro del contenedor */
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 340px;
+    margin: 0 10px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.carousel-item-content {
+    text-align: center;
+}
+
+.carousel-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.carousel-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.carousel-price {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 5px;
+}
+
+.carousel-button {
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.carousel-button:hover {
+    color: #007bff;
+}
+
+.carousel-button.prev {
+    margin-right: 20px;
+}
+
+.carousel-button.next {
+    margin-left: 20px;
 }

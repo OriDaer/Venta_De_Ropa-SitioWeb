@@ -1,36 +1,49 @@
 /* Footer.css */
 .footer-container {
-    background-color: #f0f0f0; /* Color de fondo claro */
-    padding: 20px 0; /* Espaciado superior e inferior */
-    text-align: center; /* Centra el texto */
-  }
-  
-  .footer-content {
-    max-width: 1200px; /* Ancho máximo del contenido */
-    margin: auto; /* Centra el contenido */
-    padding: 0 20px; /* Espaciado lateral */
-  }
-  
+  background-color: #f0f0f0; /* Color de fondo claro */
+  padding: 10px 0; /* Espaciado reducido superior e inferior para un alto más pequeño */
+  text-align: center; /* Centra el texto */
+  position: relative;
+  bottom: 0;
+  width: 100%; /* Asegura que el pie de página ocupe todo el ancho */
+}
+
+.footer-content {
+  max-width: 1200px; /* Ancho máximo del contenido */
+  margin: auto; /* Centra el contenido */
+  padding: 0 20px; /* Espaciado lateral */
+}
+
+.footer-nav {
+  display: flex; /* Flex para alinear los enlaces */
+  justify-content: center; /* Centra los enlaces */
+  gap: 15px; /* Espacio entre enlaces */
+  margin-bottom: 10px; /* Espacio entre la nav y el texto */
+}
+
+.footer-link {
+  color: #333; /* Color del texto */
+  text-decoration: none; /* Sin subrayado */
+  font-weight: 500; /* Peso de fuente */
+  transition: color 0.3s; /* Transición para el efecto hover */
+}
+
+.footer-link:hover {
+  color: #007bff; /* Color al pasar el mouse */
+}
+
+.footer-text {
+  color: #666; /* Color del texto de derechos */
+  font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+  margin-top: 10px; /* Separación entre los enlaces y el texto */
+}
+
+@media (max-width: 768px) {
   .footer-nav {
-    display: flex; /* Flex para alinear los enlaces */
-    justify-content: center; /* Centra los enlaces */
-    gap: 15px; /* Espacio entre enlaces */
-    margin-bottom: 10px; /* Espacio entre la nav y el texto */
+    flex-direction: column; /* En móviles, los enlaces estarán en columna */
   }
-  
-  .footer-link {
-    color: #333; /* Color del texto */
-    text-decoration: none; /* Sin subrayado */
-    font-weight: 500; /* Peso de fuente */
-    transition: color 0.3s; /* Transición para el efecto hover */
+
+  .footer-container {
+    padding: 15px 0; /* Menor padding para pantallas más pequeñas */
   }
-  
-  .footer-link:hover {
-    color: #007bff; /* Color al pasar el mouse */
-  }
-  
-  .footer-text {
-    color: #666; /* Color del texto de derechos */
-    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
-  }
-  
+}

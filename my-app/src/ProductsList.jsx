@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductsList.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import Filter from './Filter'; // Asegúrate de importar el filtro
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]); // Estado para los productos
@@ -36,37 +35,31 @@ const ProductsList = () => {
     };
 
     return (
-        <div className="products-page">
-            <div className="filter-container">
-                <Filter /> {/* Llama al componente Filter */}
+        <div className="product_page">
+            {/* Mostrar el nombre de la categoría seleccionada */}
+            <div className="titulo">
+                <h2>{categoryName}</h2>
+                <p>Aquí encontrarás las últimas tendencias!</p>
             </div>
 
-            <div className="products-container">
-                {/* Mostrar el nombre de la categoría seleccionada */}
-                <div className="titulo">
-                    <h2>{categoryName}</h2>
-                    <p>Aquí encontrarás las últimas tendencias!</p>
-                </div>
-
-                {/* Mostrar los productos filtrados */}
-                <div className="product_grid">
-                    {products.length > 0 ? (
-                        products.map((product) => (
-                            <div key={product.id} className="product_card">
-                                <img src={product.image} alt={product.title} />
-                                <div className="product-info">
-                                    <h3>{product.title}</h3>
-                                    <p>${product.price}</p>
-                                </div>
-                                <button className="detail-button" onClick={() => handleClick(product.id)}>
-                                    Más detalles
-                                </button>
+            {/* Mostrar los productos filtrados */}
+            <div className="product_grid">
+                {products.length > 0 ? (
+                    products.map((product) => (
+                        <div key={product.id} className="product_card">
+                            <img src={product.image} alt={product.title} />
+                            <div className="product-info">
+                                <h3>{product.title}</h3>
+                                <p>${product.price}</p>
                             </div>
-                        ))
-                    ) : (
-                        <p>No hay productos en esta categoría</p>
-                    )}
-                </div>
+                            <button className="detail-button" onClick={() => handleClick(product.id)}>
+                                Más detalles
+                            </button>
+                        </div>
+                    ))
+                ) : (
+                    <p>No hay productos en esta categoría</p>
+                )}
             </div>
         </div>
     );
