@@ -136,16 +136,16 @@
   font-size: 1rem;
   background-color: transparent;
   color: black;
-  border: 1px solid black;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: none;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #ed78d5;
   color: white;
 }
+
 
 .image-section {
   flex: 1;
