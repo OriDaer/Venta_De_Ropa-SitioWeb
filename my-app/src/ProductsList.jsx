@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProductsList.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import Filter from './Filter';
 
 const ProductsList = () => {
     const [products, setProducts] = useState([]); // Estado para los productos
@@ -36,6 +37,7 @@ const ProductsList = () => {
 
     return (
         <div className="product_page">
+            <Filter/>
             {/* Mostrar el nombre de la categoría seleccionada */}
             <div className="titulo">
                 <h2>{categoryName}</h2>

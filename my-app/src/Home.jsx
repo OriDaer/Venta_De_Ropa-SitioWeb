@@ -33,6 +33,10 @@ function Home() {
     setCurrentIndex((prevIndex) => (prevIndex === carouselItems.length - 1 ? 0 : prevIndex + 1));
   };
 
+  const nombrecualquiera = () => {
+    navigate('/products/category'); // Navegar a la ruta /home
+};
+
   return (
     <div className="app-container">
       <div className="cover-container">
@@ -68,7 +72,7 @@ function Home() {
       {/* Sección de categorías */}
       <Categories />
       <div>
-        <button className="detail-button" onClick={() => handleClick(1)}>Más detalles</button> {/* Pasa un ID de producto */}
+        <button className="detail-button" onClick={nombrecualquiera}>Más detalles</button> {/* Pasa un ID de producto */}
       </div>
     </div>
   );
