@@ -21,11 +21,16 @@ const Header = () => {
         navigate('/home'); // Navegar a la ruta /home
     };
 
+    // Función para navegar a la página del carrito
+    const goToCart = () => {
+        navigate('/cart'); // Navegar a la ruta /cart
+    };
+
     return (
         <header className="header-container">
             <div className="header-content">
                 <div className="header-logo">
-                    <img src="./public/img/logo.png" alt="Logo" className="logo-image" />
+                    <img src="/img/logo.png" alt="Logo" className="logo-image" />
                 </div>
                 <div className="header-buttons">
                     <button className="header-btn" onClick={goToHome}>Inicio</button>
@@ -33,9 +38,9 @@ const Header = () => {
                     <button className="header-btn" onClick={toggleContactModal}>Contacto</button>
                 </div>
                 <div className="header-icons">
-                    <img src="./public/img/buscar.png" alt="Buscar" className="icon" />
-                    <img src="./public/img/contacto.png" alt="Contacto" className="icon" />
-                    <img src="./public/img/balde.png" alt="Carrito" className="icon" />
+                    <img src="/img/buscar.png" alt="Buscar" className="icon" />
+                    <img src="/img/contacto.png" alt="Contacto" className="icon" />
+                    <img src="/img/balde.png" alt="Carrito" className="icon" onClick={goToCart} /> {/* Asocia la función goToCart */}
                 </div>
             </div>
 
