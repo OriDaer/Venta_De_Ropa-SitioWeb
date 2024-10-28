@@ -67,7 +67,7 @@
 
 .carousel-price {
   font-size: 1.25rem;
-  color: #007bff;
+  color: #e2c49f;
   font-weight: bold;
   margin-top: 10px;
 }
@@ -142,7 +142,7 @@
 }
 
 .btn:hover {
-  background-color: #ed78d5;
+  background-color: #edb278;
   color: white;
 }
 

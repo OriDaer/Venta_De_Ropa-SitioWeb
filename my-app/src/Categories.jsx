@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Categories.css';
 
 const categories = [
@@ -10,6 +11,7 @@ const categories = [
 
 const Categories = () => {
   const [categoryImages, setCategoryImages] = useState([]);
+  const navigate = useNavigate(); // Hook para la navegación
 
   useEffect(() => {
     // Obtiene la imagen del primer producto de cada categoría
@@ -31,6 +33,10 @@ const Categories = () => {
     fetchImages();
   }, []);
 
+  const handleDetailsClick = (category) => {
+    navigate(`/products/category/${category}`); // Redirige a la lista de productos de la categoría
+  };
+
   return (
     <div className="grid-container">
       {categoryImages.map((cat, index) => (
@@ -38,7 +44,12 @@ const Categories = () => {
           <img src={cat.image} alt={cat.category} className="category-image" />
           <div className="category-info">
             <h3 className="category-name">{cat.category}</h3>
-            <button className="details-button">Más detalles</button>
+            <button 
+              className="details-button" 
+              onClick={() => handleDetailsClick(cat.category)} // Agrega la lógica de navegación
+            >
+              Más detalles
+            </button>
           </div>
         </div>
       ))}
