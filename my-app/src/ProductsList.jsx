@@ -3,7 +3,7 @@ import './ProductsList.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import Filter from './Filter';
 
-const ProductsList = () => {
+const ProductsList = ({carritos}) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const { id } = useParams();
@@ -58,6 +58,21 @@ const ProductsList = () => {
         navigate(`/products/category/${productId}`);
     };
 
+    const handleAddToCart = (product) => {
+        carritos(prev => {
+            const existingProduct = prev.find(item => item.id === product.id);
+            if (existingProduct) {
+                return prev.map(item =>
+                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                );
+            }
+            console.log(
+                'El producto no existe en el carrito, se agrega con una cantidad de 1'
+            )
+            return [...prev, { ...product, quantity: 1 }];
+        });
+    };
+
     const updateFilters = (newFilters) => {
         setFilters(newFilters);
     };
@@ -81,6 +96,13 @@ const ProductsList = () => {
                             </div>
                             <button className="detail-button" onClick={() => handleClick(product.id)}>
                                 Más detalles
+                            </button>
+                            <button 
+                                className="cart-button" 
+                                onClick={() => handleAddToCart(product)}
+                                aria-label="Agregar a carrito"
+                            >
+                                🛒 {/* Ícono de carrito */}
                             </button>
                         </div>
                     ))
