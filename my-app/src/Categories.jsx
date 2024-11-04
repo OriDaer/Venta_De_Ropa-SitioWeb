@@ -11,30 +11,28 @@ const categories = [
 
 const Categories = () => {
   const [categoryImages, setCategoryImages] = useState([]);
-  const navigate = useNavigate(); // Hook para la navegación
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Obtiene la imagen del primer producto de cada categoría
-    const fetchImages = () => {
-      const promises = categories.map((category) => {
-        return fetch(`https://fakestoreapi.com/products/category/${category}`)
-          .then((response) => response.json())
-          .then((data) => ({
-            category,
-            image: data[0]?.image, // Toma la primera imagen
-          }));
+    const fetchImages = async () => {
+      const promises = categories.map(async (category) => {
+        const response = await fetch(`https://fakestoreapi.com/products/category/${category}`);
+        const data = await response.json();
+        return {
+          category,
+          image: data[0]?.image, // Toma la primera imagen
+        };
       });
 
-      Promise.all(promises).then((results) => {
-        setCategoryImages(results);
-      });
+      const results = await Promise.all(promises);
+      setCategoryImages(results);
     };
 
     fetchImages();
   }, []);
 
   const handleDetailsClick = (category) => {
-    navigate(`/products/category/${category}`); // Redirige a la lista de productos de la categoría
+    navigate(`/products/category/${category}`);
   };
 
   return (
@@ -46,7 +44,7 @@ const Categories = () => {
             <h3 className="category-name">{cat.category}</h3>
             <button 
               className="details-button" 
-              onClick={() => handleDetailsClick(cat.category)} // Agrega la lógica de navegación
+              onClick={() => handleDetailsClick(cat.category)}
             >
               Más detalles
             </button>

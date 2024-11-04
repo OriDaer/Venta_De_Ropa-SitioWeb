@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './ProductsList.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import './ProductsList.css';
 import Filter from './Filter';
 
-const ProductsList = ({carritos}) => {
+const ProductsList = ({ carritos }) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
-    const { id } = useParams();
+    const { id } = useParams(); // Captura la categoría desde la URL
     const navigate = useNavigate();
-    const [categoryName, setCategoryName] = useState('');
+    const [categoryName, setCategoryName] = useState('Todos los productos');
     const [filters, setFilters] = useState({
         category: '',
         priceRange: []
@@ -39,12 +39,18 @@ const ProductsList = ({carritos}) => {
 
             if (filters.category) {
                 newFilteredProducts = newFilteredProducts.filter(product => product.category === filters.category);
+                setCategoryName(filters.category);
+            } else {
+                setCategoryName('Todos los productos');
             }
 
             if (filters.priceRange.length > 0) {
                 newFilteredProducts = newFilteredProducts.filter(product => {
                     const price = product.price;
-                    return filters.priceRange.some(range => price >= range[0] && price < range[1]);
+                    return filters.priceRange.some(range => (
+                        (range[1] === Infinity && price > range[0]) ||
+                        (price >= range[0] && price < range[1])
+                    ));
                 });
             }
 
@@ -62,13 +68,8 @@ const ProductsList = ({carritos}) => {
         carritos(prev => {
             const existingProduct = prev.find(item => item.id === product.id);
             if (existingProduct) {
-                return prev.map(item =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-                );
+                return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
             }
-            console.log(
-                'El producto no existe en el carrito, se agrega con una cantidad de 1'
-            )
             return [...prev, { ...product, quantity: 1 }];
         });
     };
@@ -79,12 +80,11 @@ const ProductsList = ({carritos}) => {
 
     return (
         <div className="product_page">
-            <Filter updateFilters={updateFilters} />
             <div className="titulo">
                 <h2>{categoryName}</h2>
                 <p>Aquí encontrarás las últimas tendencias!</p>
             </div>
-
+            <Filter updateFilters={updateFilters} />
             <div className="product_grid">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
@@ -97,12 +97,12 @@ const ProductsList = ({carritos}) => {
                             <button className="detail-button" onClick={() => handleClick(product.id)}>
                                 Más detalles
                             </button>
-                            <button 
-                                className="cart-button" 
+                            <button
+                                className="cart-button"
                                 onClick={() => handleAddToCart(product)}
                                 aria-label="Agregar a carrito"
                             >
-                                🛒 {/* Ícono de carrito */}
+                                🛒
                             </button>
                         </div>
                     ))

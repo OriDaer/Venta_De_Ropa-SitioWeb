@@ -11,7 +11,7 @@ function Home() {
 
   // Obtén los productos de la API cuando el componente se monte
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=10') // Solicita 4 productos aleatorios
+    fetch('https://fakestoreapi.com/products?limit=10') // Solicita 10 productos
       .then(response => response.json()) // Convierte la respuesta en JSON
       .then(data => {
         setCarouselItems(data); // Guarda los productos en el estado
@@ -35,7 +35,7 @@ function Home() {
 
   const nombrecualquiera = () => {
     navigate('/products/category'); // Navegar a la ruta /home
-};
+  };
 
   return (
     <div className="app-container">
@@ -60,7 +60,7 @@ function Home() {
               <div className="carousel-item-content">
                 <h2 className="carousel-title">{item.title}</h2>
                 <p className="carousel-description">{item.description}</p>
-                <p className="carousel-price">{item.price}</p>
+                <p className="carousel-price">${item.price}</p>
               </div>
             </div>
           ))}

@@ -8,7 +8,7 @@
     width: 20%; /* Fijamos un ancho para la sección de filtros */
     background-color: #f5f5f5;
     padding: 20px;
-    margin-right: 20px;
+    margin-right: 0px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -42,8 +42,8 @@
 }
 
 .filter_btn {
-    border: 1px solid #000;
-    background-color: transparent;
+    border: none; /* Elimina el borde */
+    background-color: transparent; /* Fondo transparente */
     padding: 10px 20px;
     cursor: pointer;
 }
@@ -99,7 +99,8 @@
 
 .cart-button {
     background: black;
-    border: white;
+    border: none; /* Elimina el borde */
+    color: white;
     cursor: pointer;
     font-size: 20px; /* Ajusta el tamaño según sea necesario */
     margin-left: 10px; /* Espaciado entre botones */

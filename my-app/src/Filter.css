@@ -1,9 +1,10 @@
 .filter-container {
-    border: 2px solid #007bff;
+    border: none; /* Elimina el borde */
     padding: 16px;
-    width: 250px;
+    width: 800px;
     background-color: #f8f8f8;
     position: relative;
+    margin-top: 60px; /* Agrega un espacio entre el título y el filtro */
 }
 
 .filter-header {
@@ -18,8 +19,8 @@
 }
 
 .filter-menu {
-    background: none;
-    border: none;
+    background: none; /* Fondo transparente */
+    border: none; /* Elimina el borde */
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -63,10 +64,10 @@
 }
 
 .apply-filter-btn {
-    background-color: black;
-    color: white;
+    background-color: transparent; /* Fondo transparente */
+    color: black; /* Cambia el color si es necesario */
     padding: 8px 16px;
-    border: none;
+    border: none; /* Elimina el borde */
     cursor: pointer;
     margin-top: 16px;
     width: 100%;

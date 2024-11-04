@@ -1,29 +1,56 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate
-import './Header.css'; // Asegúrate de tener el archivo de estilos importado
+import { useNavigate } from 'react-router-dom'; 
+import './Header.css'; 
 
 const Header = () => {
-    const [showContactModal, setShowContactModal] = useState(false); // Estado para mostrar u ocultar el modal
-    const navigate = useNavigate(); // Instanciar useNavigate
+    const [showContactModal, setShowContactModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
 
-    // Función para alternar el estado del modal
+    const navigate = useNavigate();
+
     const toggleContactModal = () => {
         setShowContactModal(!showContactModal);
     };
 
-    // Función para navegar a la página de productos
     const goToProducts = () => {
-        navigate('/products/category'); // Navegar a la ruta /products/category
+        navigate('/products/category'); 
     };
 
-    // Función para navegar a la página de inicio
     const goToHome = () => {
-        navigate('/home'); // Navegar a la ruta /home
+        navigate('/home'); 
     };
 
-    // Función para navegar a la página del carrito
     const goToCart = () => {
-        navigate('/cart'); // Navegar a la ruta /cart
+        navigate('/cart'); 
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        const { name, email, message } = formData;
+
+        // Validación simple
+        if (!name || !email || !message) {
+            alert('Por favor, completa todos los campos.');
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            alert('Por favor, ingresa un correo válido.');
+            return;
+        }
+
+        alert('Gracias por tu mensaje, pronto te estaremos respondiendo.');
+        setShowContactModal(false);
+        setFormData({ name: '', email: '', message: '' });
     };
 
     return (
@@ -38,23 +65,42 @@ const Header = () => {
                     <button className="header-btn" onClick={toggleContactModal}>Contacto</button>
                 </div>
                 <div className="header-icons">
-                    <img src="/img/buscar.png" alt="Buscar" className="icon" />
-                    <img src="/img/contacto.png" alt="Contacto" className="icon" />
-                    <img src="/img/balde.png" alt="Carrito" className="icon" onClick={goToCart} /> {/* Asocia la función goToCart */}
+                    <img src="/img/balde.png" alt="Carrito" className="icon" onClick={goToCart} />
                 </div>
             </div>
 
-            {/* Modal de Contacto */}
             {showContactModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <button className="close-modal" onClick={toggleContactModal}>X</button>
                         <h2>Contáctanos</h2>
-                        <p>¡Gracias por visitarnos! Si tienes alguna pregunta, puedes escribirnos un mensaje y te responderemos lo antes posible.</p>
-                        <form className="contact-form">
-                            <input type="text" placeholder="Tu nombre" className="contact-input" />
-                            <input type="email" placeholder="Tu correo" className="contact-input" />
-                            <textarea placeholder="Tu mensaje" className="contact-textarea"></textarea>
+                        <form className="contact-form" onSubmit={handleFormSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Tu nombre"
+                                className="contact-input"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Tu correo"
+                                className="contact-input"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            <textarea
+                                name="message"
+                                placeholder="Tu mensaje"
+                                className="contact-textarea"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
                             <button type="submit" className="send-btn">Enviar</button>
                         </form>
                     </div>
