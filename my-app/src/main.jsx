@@ -8,6 +8,7 @@ import Login from './Login';
 import Cart from './Cart';
 import Header from './Header';
 import Footer from './Footer';
+import BlackjackGame from './BlackjackGame'; // Importa BlackjackGame
 
 const App = () => {
   const [carts, setCarts] = useState([]);
@@ -15,11 +16,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} /> 
-        <Route path="/home" element={<><Header /><Home /><Footer /></>} /> 
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<><Header /><Home /><Footer /></>} />
         <Route path="/products/category" element={<><Header /><ProductsList carritos={setCarts} /><Footer /></>} />
         <Route path="/products/category/:id" element={<><Header /><ProductDetail /><Footer /></>} />
-        <Route path="/cart" element={<><Header /><Cart carritos={carts} setCarritos={setCarts} /><Footer /></>} /> 
+        <Route path="/cart" element={<><Header /><Cart carritos={carts} setCarritos={setCarts} /><Footer /></>} />
+        <Route path="/blackjack" element={<><Header /><BlackjackGame /><Footer /></>} /> {/* Ruta para Blackjack */}
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,210 @@
+/* Estilo general de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #006400;  /* Verde como la mesa de blackjack */
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    color: white;
+}
+
+/* Fondo de la mesa de Blackjack */
+#game-container {
+    background-color: #006400;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+/* Estilos específicos para los botones dentro de BlackjackGame */
+
+/* Botón para iniciar el juego */
+#game-container button.start-game {
+    background-color: #ffcc00;  /* Color dorado para iniciar el juego */
+    color: black;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#game-container button.start-game:hover {
+    background-color: #e6b800;  /* Amarillo oscuro para hover */
+    transform: scale(1.05);
+}
+
+/* Botón para pedir una carta */
+#game-container button.hit {
+    background-color: #28a745; /* Verde para pedir carta */
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#game-container button.hit:hover {
+    background-color: #218838;  /* Verde más oscuro para hover */
+    transform: scale(1.05);
+}
+
+/* Botón para plantarse */
+#game-container button.stand {
+    background-color: #dc3545; /* Rojo para plantarse */
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#game-container button.stand:hover {
+    background-color: #c82333;  /* Rojo más oscuro para hover */
+    transform: scale(1.05);
+}
+
+/* Botones deshabilitados */
+#game-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Estilos para las cartas */
+.card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.card-container img {
+    width: 80px; /* Tamaño de las cartas */
+    height: 120px;
+    margin: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.card-container img.hidden-card {
+    filter: grayscale(100%); /* Cartas ocultas del crupier */
+    box-shadow: none;
+}
+
+/* Estilos de las puntuaciones */
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.score-container h3 {
+    font-size: 24px;
+    color: white;
+}
+
+.game-status {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffcc00;  /* Color dorado para el estado del juego */
+}
+
+/* Modal para el contacto */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.contact-input,
+.contact-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.contact-textarea {
+    height: 150px;
+}
+
+.send-btn {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-btn:hover {
+    background-color: #218838;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Iconos de la cabecera */
+.icon {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.casino-icon {
+    width: 40px;
+    height: 40px;
+}

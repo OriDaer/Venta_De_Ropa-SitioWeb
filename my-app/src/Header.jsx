@@ -28,6 +28,10 @@ const Header = () => {
         navigate('/cart'); 
     };
 
+    const goToBlackjack = () => {
+        navigate('/blackjack');  // Redirige a la página de Blackjack
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -65,7 +69,19 @@ const Header = () => {
                     <button className="header-btn" onClick={toggleContactModal}>Contacto</button>
                 </div>
                 <div className="header-icons">
-                    <img src="/img/balde.png" alt="Carrito" className="icon" onClick={goToCart} />
+                    <img 
+                        src="/img/balde.png" 
+                        alt="Carrito" 
+                        className="icon" 
+                        onClick={goToCart} 
+                    />
+                    {/* Agregar el icono de casino junto al carrito */}
+                    <img 
+                        src="/img/casino.png" 
+                        alt="Casino" 
+                        className="icon casino-icon" 
+                        onClick={goToBlackjack} 
+                    />
                 </div>
             </div>
 
